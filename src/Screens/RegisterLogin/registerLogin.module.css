@@ -1,0 +1,58 @@
+body{
+    background-color: #6a62d2;
+}
+
+.background{
+    display: flex;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card{
+    width: 100%;
+    max-width: 350px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.cardHeader{
+    text-align: center;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px;
+    
+
+}
+.inputarea{
+    background-color: #e5e8ed;
+    color: #4e545f;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+.input button{
+    background-color: #6a62d2;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    border: none;
+    margin: 10px 0px;
+    cursor:pointer
+}
+
+.input button:hover{
+    background-color: #635ea5;
+}
+
+.input .google{
+    background-color: rgb(212, 61, 48) ;
+}
+.input .google:hover{
+    background-color: rgb(181, 76, 66) ;
+}
