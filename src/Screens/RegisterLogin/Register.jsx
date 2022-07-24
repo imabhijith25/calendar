@@ -1,7 +1,28 @@
 import styles from "./registerLogin.module.css"
 import { Link } from "react-router-dom";
+import {useState} from 'react'
+import { axiosInstance } from "../../API/api";
 const Register = () => {
+    const [email, setEmail] = useState("")
+    const [name, setName]  = useState("")
+    const [password, setPassword] = useState()
     //#6a62d2
+
+
+
+    const handleSubmit = ()=>{
+        const payload = {
+            email,
+            name,
+            password
+        }
+        axiosInstance.post("/api/v1/authentication/register",payload).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+        
+    }
     return ( 
         <>
         <div className={styles.background}>
@@ -16,20 +37,31 @@ const Register = () => {
                         type="text"
                         placeholder="Email"
                         className={styles.inputarea}
+                        onChange={(e)=>{
+                            setEmail(e.target.value)
+                        }}
                         />
                         <input
                         type="password"
                         placeholder="Password"
                         className={styles.inputarea}
+                        onChange = {(e)=>{
+                            setPassword(e.target.value)
+                        }}
                         />
 
                         <input
                             type="text"
                             placeholder="Full Name"
                             className={styles.inputarea}
+                            onChange={(e)=>{
+                                setName(e.target.value)
+                            }}
                         />
 
-                        <button>
+                        <button
+                        onClick={handleSubmit}
+                        >
                             Sign Up
                         </button>
                         
