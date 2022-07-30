@@ -1,5 +1,9 @@
 html{
   font-family: 'Plus Jakarta Sans', sans-serif;
+
+}
+body{
+  margin: 0px auto;
 }
 h3{
   font-weight: 600 !important;

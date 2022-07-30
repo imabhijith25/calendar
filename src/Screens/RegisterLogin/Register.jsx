@@ -1,8 +1,10 @@
 import styles from "./registerLogin.module.css"
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import { axiosInstance } from "../../API/api";
+import { setAuthToken } from "../../utils/helper";
 const Register = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [name, setName]  = useState("")
     const [password, setPassword] = useState()
@@ -17,7 +19,10 @@ const Register = () => {
             password
         }
         axiosInstance.post("/api/v1/authentication/register",payload).then(res=>{
-            console.log(res)
+            if(res?.data?.success){
+                    setAuthToken(res?.data?.token)
+                    navigate("/dashboard" ,{replace:true})
+            }
         }).catch(err=>{
             console.log(err)
         })

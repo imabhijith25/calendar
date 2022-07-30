@@ -8,6 +8,7 @@ import {
   Routes,
   Link
 } from "react-router-dom";
+import DashView from './Screens/dashboard';
 
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/login" exact  element={<Login/>} />
           <Route path="/register" exact element={<Register/>} />
-     
-        </Routes>
+          <Route path="/dashboard" exact element={<DashView/>} />
+        </Routes> 
       </Router>
     </>
   );

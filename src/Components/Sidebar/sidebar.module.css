@@ -1,0 +1,39 @@
+
+.container{
+    width: 200px;
+    background-color: #6a62d2;
+    height: 100vh;
+    padding: 10px 20px;
+}
+
+.containerBlock{
+    display: block;
+}
+
+
+.menuItem{
+
+    color: white;
+    cursor: pointer;
+    padding: 1px 10px;
+    
+    border-radius: 10px;
+}
+
+.menuItem:hover{
+    background-color: #5a53b9;
+    border-radius: 10px;
+}
+
+.selected{
+    background-color: #5a53b9;
+    border-radius: 10px;
+}
+
+.hamburgerMenu{
+    border: none;
+    padding: 20px;
+    background-color: #6a62d2;
+    display: none;
+}
+
