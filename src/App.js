@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import DashView from './Screens/dashboard';
+import Page from "./Screens/Page"
 
 
 function App() {
@@ -16,9 +17,25 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/login" exact  element={<Login/>} />
-          <Route path="/register" exact element={<Register/>} />
-          <Route path="/dashboard" exact element={<DashView/>} />
+          <Route path="/login" exact  element={
+
+            <Page>
+              <Login/>
+            </Page>
+          } />
+          <Route path="/register" exact element={
+
+            <Page>
+              <Register />
+            </Page>
+     
+          
+          } />
+          <Route path="/dashboard" exact element={
+            <Page>
+              <DashView/>
+            </Page>
+          } />
         </Routes> 
       </Router>
     </>

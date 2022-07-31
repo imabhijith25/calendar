@@ -1,12 +1,28 @@
 import styles from "./registerLogin.module.css"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { axiosInstance } from "../../API/api";
+import { setAuthToken } from "../../utils/helper";
 const Login = () => {
     //#6a62d2
+    const navigate = useNavigate()
     const [email, SetEmail] = useState("")
     const [password, SetPassword] = useState("")
     const onHandleSubmit = ()=>{
-        console.log(email + password)
+        const payload = {
+            email,
+            password
+        }
+       axiosInstance.post("/api/v1/authentication/login", payload).then(res=>{
+        if(res?.data?.success){
+            setAuthToken(res?.data?.token)
+            navigate("/dashboard", { replace: true })
+        }
+
+       }).catch(err=>{
+        console.log(err)
+
+       })
     }
     return (
         <>
