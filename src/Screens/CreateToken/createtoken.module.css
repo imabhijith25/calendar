@@ -1,0 +1,63 @@
+.body{
+
+    height: 100vh;
+    padding: 50px;
+    overflow: hidden;
+    
+
+}
+.body p{
+    margin: 0px;
+    font-size: 0.8rem;
+}
+
+.formContainer{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+   
+
+}
+.formCard{
+ 
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    max-width: 400px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 6px;
+    background-color: white;
+    
+    word-wrap: break-word;
+}
+.inputArea{
+
+    background-color: #e5e8ed;
+    color: #4e545f;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.url{
+    margin-top: 10px;
+}
+.buttonArea{
+    margin-top: 10px;
+}
+.create{
+    
+    background-color: #6a62d2;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    border: none;
+    margin: 10px 0px;
+    cursor:pointer
+}
+.create:hover{
+    background-color: #635ea5;
+}

@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import DashView from './Screens/dashboard';
 import Page from "./Screens/Page"
+import CreateToken from './Screens/CreateToken';
 
 
 function App() {
@@ -26,6 +27,12 @@ function App() {
           <Route path="/dashboard" exact element={
             <Page>
               <DashView />
+            </Page>
+          } />
+
+          <Route path="/createToken" exact element={
+            <Page>
+             <CreateToken/>
             </Page>
           } />
         </Routes>

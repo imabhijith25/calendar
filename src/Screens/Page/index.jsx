@@ -5,37 +5,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserData } from "../../Redux/userSlicer";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import styles from "./page.module.css"
-const Page = ({children}) => {
+const Page = ({ children }) => {
     //this is for protected routing
     const dispatch = useDispatch()
     const config = {
-        headers:{
-            Authorization :  getAuthToken()
+        headers: {
+            Authorization: getAuthToken()
         }
     }
-    useEffect(()=>{
-        axiosInstance.get("/api/v1/authentication/getProfile",config).then((res)=>{
+    useEffect(() => {
+        axiosInstance.get("/api/v1/authentication/getProfile", config).then((res) => {
             console.log(res)
             dispatch(setUserData(res?.data?.data))
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
         })
-    },[])
-    return ( 
+    }, [])
+    return (
 
         <>
-        <div className={styles.bodyLayout}>     
-            <Sidebar></Sidebar>
-            <div className={styles.children}>
-            {children}
+            <div className={styles.bodyLayout}>
+                <Sidebar></Sidebar>
+                <div className={styles.children}>
+                    {children}
+                </div>
             </div>
-            
 
-        </div>
-   
         </>
 
-     );
+    );
 }
- 
+
 export default Page;
