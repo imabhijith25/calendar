@@ -1,0 +1,15 @@
+.bodyLayout{
+    display: flex;
+
+}
+
+.children{
+    flex-basis: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .bodyLayout {
+      display: block;
+
+    }
+  }

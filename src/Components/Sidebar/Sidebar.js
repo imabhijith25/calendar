@@ -47,12 +47,22 @@ const Sidebar = () => {
 
     return (
         <>
-
-            <Drawer
+ 
+                
+        <Drawer
                 anchor={'left'}
+                sx={width>600 ?{
+                    width: 240,
+                    flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                      width: 240,
+                      boxSizing: 'border-box',
+                    },
+                  } : ""}
                 open={open}
                 onClose={handleClose}
                 variant={width<600 ? "temporary":"permanent"}
+
             >
 
                 <div className={cn(styles.container)} style={sideDrawerDisplayCondition? {display:"block"}:{display:"none"}}>
@@ -68,10 +78,15 @@ const Sidebar = () => {
                 </div>
 
             </Drawer>
+
+
             <div className={styles.hamburgerMenu} onClick={handleSideBar} style={width<600?{display:"block"}:{display:"none"}}>
                 <Menu color='white'/>
             </div>
+
         
+
+
 
         </>
 

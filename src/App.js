@@ -17,26 +17,18 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/login" exact  element={
-
-            <Page>
-              <Login/>
-            </Page>
+          <Route path="/login" exact element={
+            <Login />
           } />
           <Route path="/register" exact element={
-
-            <Page>
-              <Register />
-            </Page>
-     
-          
+            <Register />
           } />
           <Route path="/dashboard" exact element={
             <Page>
-              <DashView/>
+              <DashView />
             </Page>
           } />
-        </Routes> 
+        </Routes>
       </Router>
     </>
   );

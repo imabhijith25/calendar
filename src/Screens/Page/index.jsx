@@ -3,7 +3,8 @@ import { axiosInstance } from "../../API/api";
 import { getAuthToken } from "../../utils/helper";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserData } from "../../Redux/userSlicer";
-
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import styles from "./page.module.css"
 const Page = ({children}) => {
     //this is for protected routing
     const dispatch = useDispatch()
@@ -23,7 +24,15 @@ const Page = ({children}) => {
     return ( 
 
         <>
-        {children}
+        <div className={styles.bodyLayout}>     
+            <Sidebar></Sidebar>
+            <div className={styles.children}>
+            {children}
+            </div>
+            
+
+        </div>
+   
         </>
 
      );

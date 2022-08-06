@@ -8,10 +8,14 @@ const DashView = () => {
 
         <>
             
-          
-            <Sidebar></Sidebar>
+
+            
             <div className={styles.body}>
-                
+    
+        
+                <p>Hiii</p>
+  
+                    
             </div>
 
 
