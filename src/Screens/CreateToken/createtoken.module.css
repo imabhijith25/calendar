@@ -72,3 +72,15 @@
 .formControl{
     margin-top: 10px;
 }
+.urlInfo{
+    margin: 10px;
+    text-align:center;
+}
+
+.uploadContainer{
+    text-align: center;
+    padding: 30px 10px;
+    border: 1px solid #635ea5;
+    border-radius: 6px;
+    cursor: pointer;
+}
