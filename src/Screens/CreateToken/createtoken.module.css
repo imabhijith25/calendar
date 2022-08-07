@@ -47,6 +47,9 @@
 }
 .buttonArea{
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 .create{
     
@@ -60,4 +63,12 @@
 }
 .create:hover{
     background-color: #635ea5;
+}
+
+.errorHandler{
+    color: red;
+}
+
+.formControl{
+    margin-top: 10px;
 }
