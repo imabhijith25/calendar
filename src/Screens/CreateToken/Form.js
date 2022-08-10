@@ -1,6 +1,38 @@
 import styles from "./createtoken.module.css"
 import {Upload,} from 'react-feather'
+import {storage} from "../../Firebase"
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 const Form = () => {
+    const handleFileClick = ()=>{
+        document.getElementById("file").click()
+    }
+
+    const handleFileUpload = (e)=>{
+       
+        const file = e.target.files[0]
+        if (!file){
+            return null
+        }
+        const storageRef = ref(storage, `files/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on("state_changed",
+        (snapshot) => {
+          const progress =
+            Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          console.log("hii");
+        },
+        (error) => {
+          alert(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log(downloadURL)
+          });
+        }
+      );
+
+    }
     return (
 
         <>
@@ -111,6 +143,7 @@ const Form = () => {
 
 
                         </div>
+                       
                         <div className={styles.formControl}>
                             <p>Country</p>
                         <input
@@ -124,7 +157,8 @@ const Form = () => {
                         </div>
 
                         <div className={styles.formControl}>
-                            <div className={styles.uploadContainer}>
+                        <input type="file" id="file" name="file" className={styles.hiddenFile} onChange={handleFileUpload}></input>
+                            <div className={styles.uploadContainer} onClick={handleFileClick}>
                                <Upload/>
                                 <p>Click to upload a photo</p>
 
