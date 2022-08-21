@@ -83,7 +83,7 @@ const CreateToken = () => {
         
     </div>}
     
-    {form && <Form/>}
+    {form && <Form cardUrl={cardUrl}/>}
     
     </> );
 }

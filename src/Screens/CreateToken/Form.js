@@ -1,8 +1,54 @@
 import styles from "./createtoken.module.css"
+import {useState} from 'react'
 import {Upload,} from 'react-feather'
 import {storage} from "../../Firebase"
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-const Form = () => {
+import { getAuthToken } from "../../utils/helper";
+import { axiosInstance } from "../../API/api";
+const Form = ({cardUrl}) => {
+
+    const [profilePhoto, setProfilePhoto] = useState(null)
+    const [details, setDetails] = useState(
+        {
+            name:"",
+            description:"",
+            street:"",
+            district:"",
+            state:"",
+            pincode:"",
+            country:""
+
+
+        }
+    )
+
+    const handleDetails = (e)=>{
+        setDetails({...details,[e.target.name]:e.target.value})
+
+    }
+
+    const handleSubmit=()=>{
+        const config = {
+            headers: {
+                Authorization: getAuthToken()
+            }
+        }
+        const payload = {
+            name:details.name,
+            description:details.description,
+            cardUrl,
+            address: `${details.street} ${details.state} ${details.district} ${details.state} ${details.pincode}`,
+            profilePicUrl:profilePhoto
+
+        }
+
+        axiosInstance.post("/api/v1/cards/addCard",payload,config).then(res=>{
+            alert("success")
+        }).catch(err=>{
+            alert("error")
+        })
+
+    }
     const handleFileClick = ()=>{
         document.getElementById("file").click()
     }
@@ -28,6 +74,7 @@ const Form = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log(downloadURL)
+            setProfilePhoto(downloadURL)
           });
         }
       );
@@ -50,7 +97,7 @@ const Form = () => {
                                 <input
                                     type="text"
                                     name="name"
-
+                                    onChange={handleDetails}
                                     placeholder="Joseph"
                                     className={styles.inputArea}
 
@@ -65,7 +112,7 @@ const Form = () => {
                                 <textarea
 
                                     name="description"
-
+                                    onChange={handleDetails}
                                     placeholder="I am a really cool dentist!!"
                                     style={{ resize: "none" }}
                                     className={styles.inputArea}
@@ -90,7 +137,7 @@ const Form = () => {
                                 <input
                                     type="text"
                                     name="street"
-
+                                    onChange={handleDetails}
                                     placeholder="Street 10"
                                     className={styles.inputArea}
 
@@ -98,7 +145,7 @@ const Form = () => {
                                 <input
                                     type="text"
                                     name="district"
-
+                                    onChange={handleDetails}
                                     placeholder="Trivandrum"
                                     className={styles.inputArea}
 
@@ -124,7 +171,7 @@ const Form = () => {
                                 <input
                                     type="text"
                                     name="state"
-
+                                    onChange={handleDetails}
                                     placeholder="Goa"
                                     className={styles.inputArea}
 
@@ -132,7 +179,7 @@ const Form = () => {
                                 <input
                                     type="text"
                                     name="pincode"
-
+                                    onChange={handleDetails}
                                     placeholder="123"
                                     className={styles.inputArea}
 
@@ -149,7 +196,7 @@ const Form = () => {
                         <input
                                     type="text"
                                     name="country"
-
+                                    onChange={handleDetails}
                                     placeholder="India"
                                     className={styles.inputArea}
 
@@ -159,8 +206,16 @@ const Form = () => {
                         <div className={styles.formControl}>
                         <input type="file" id="file" name="file" className={styles.hiddenFile} onChange={handleFileUpload}></input>
                             <div className={styles.uploadContainer} onClick={handleFileClick}>
-                               <Upload/>
-                                <p>Click to upload a photo</p>
+                                {!profilePhoto &&
+                                <>
+                                    <Upload />
+                                    <p>Click to upload a photo</p>
+                                </>
+
+
+                                }
+                                {profilePhoto &&  <img src={profilePhoto} className={styles.profilePhoto}/>}
+                                
 
                             </div>
 
@@ -175,6 +230,7 @@ const Form = () => {
                         </div>
                         <div className={styles.buttonArea}>
                             <button className={styles.create}
+                            onClick={handleSubmit}
 
                             >
                                 Create

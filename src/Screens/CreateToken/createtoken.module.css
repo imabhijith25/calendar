@@ -28,7 +28,8 @@
     padding: 30px 20px;
     border-radius: 6px;
     background-color: white;
-    
+    max-height: 600px;
+    overflow-y: scroll;
     word-wrap: break-word;
 }
 .inputArea{
@@ -79,12 +80,23 @@
 
 .uploadContainer{
     text-align: center;
+    position: relative;
     padding: 30px 10px;
     border: 1px solid #635ea5;
     border-radius: 6px;
     cursor: pointer;
+    height: 106px;
 }
+.profilePhoto{
 
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 50%; 
+    transform: translate(-50%);
+   
+    object-fit: cover;
+}
 .hiddenFile{
     display: none;
 }
